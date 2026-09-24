@@ -27,7 +27,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if parent_dir not in sys.path:
     sys.path.append(parent_dir)
 
-from TLS_LIB.create_tls_socket import *
+from create_tls_socket import *
 
 def gen_tls():
     tls = TLS(client_cert,client_key,CA_cert)

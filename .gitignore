@@ -1,0 +1,9 @@
+# Ignore everything by default
+/*
+
+# Do not ignore the gitignore file
+!.gitignore
+
+# Explicitly allow your target folders
+!netconf_tls_main/
+!YOUR_SECOND_FOLDER_NAME/

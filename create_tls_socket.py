@@ -175,9 +175,9 @@ RPC_SENDS = {
     <config>
       <o-ran-usermgmt:users xmlns:o-ran-usermgmt="urn:o-ran:user-mgmt:1.0">
         <o-ran-usermgmt:user>
-          <o-ran-usermgmt:name>oranduuser@ericcson.com</o-ran-usermgmt:name>
-          <o-ran-usermgmt:account-type>CERTIFICATE</o-ran-usermgmt:account-type>
-          <o-ran-usermgmt:enabled>true</o-ran-usermgmt:enabled>
+          <o-ran-usermgmt:name>{username}</o-ran-usermgmt:name>
+          <o-ran-usermgmt:account-type>{account_type}</o-ran-usermgmt:account-type>
+          <o-ran-usermgmt:enabled>{enabled}</o-ran-usermgmt:enabled>
         </o-ran-usermgmt:user>
       </o-ran-usermgmt:users>
     </config>
@@ -195,8 +195,8 @@ RPC_SENDS = {
         <o-ran-cert:cert-maps>
           <o-ran-cert:cert-to-name>
             <o-ran-cert:id>1</o-ran-cert:id>
-            <o-ran-cert:fingerprint>04:E1:B4:E9:50:47:07:B5:13:46:04:21:7D:DB:12:85:92:22:64:93:43:A5:FB:AC:1A:8A:B3:E1:74:10:F7:8D:13</o-ran-cert:fingerprint>
-            <o-ran-cert:map-type xmlns:x509c2n="urn:ietf:params:xml:ns:yang:ietf-x509-cert-to-name">x509c2n:san-rfc822-name</o-ran-cert:map-type>
+            <o-ran-cert:fingerprint>{crt_fingerprint}}</o-ran-cert:fingerprint>
+            <o-ran-cert:map-type xmlns:x509c2n="urn:ietf:params:xml:ns:yang:ietf-x509-cert-to-name">{map_type}</o-ran-cert:map-type>
           </o-ran-cert:cert-to-name>
         </o-ran-cert:cert-maps>
       </o-ran-cert:certificate-parameters>
@@ -214,8 +214,8 @@ RPC_SENDS = {
       <nacm:nacm xmlns:nacm="urn:ietf:params:xml:ns:yang:ietf-netconf-acm">
         <nacm:groups>
           <nacm:group>
-            <nacm:name>sudo</nacm:name>
-            <nacm:user-name>oranduuser@ericcson.com</nacm:user-name>
+            <nacm:name>{access_group}</nacm:name>
+            <nacm:user-name>{user}</nacm:user-name>
           </nacm:group>
         </nacm:groups>
       </nacm:nacm>
@@ -233,7 +233,7 @@ RPC_SENDS = {
         <if:interface>
           <if:name>eth_f_0</if:name>
           <dot1x:pae xmlns:dot1x="urn:ieee:std:802.1X:yang:ieee802-dot1x">
-            <dot1x:pae-system>mplane</dot1x:pae-system>
+            <dot1x:pae-system>{pae_system}}</dot1x:pae-system>
             <dot1x:port-type>real-port</dot1x:port-type>
             <dot1x:supplicant>
               <dot1x:held-period>60</dot1x:held-period>
@@ -254,8 +254,8 @@ RPC_SENDS = {
       <config>
          <sys:system xmlns:sys="urn:ietf:params:xml:ns:yang:ietf-system">
          <dot1x:pae-system xmlns:dot1x="urn:ieee:std:802.1X:yang:ieee802-dot1x">
-            <dot1x:name>mplane</dot1x:name>
-            <dot1x:system-access-control>enabled</dot1x:system-access-control>
+            <dot1x:name>{dot1x_name}</dot1x:name>
+            <dot1x:system-access-control>{enabled}</dot1x:system-access-control>
          </dot1x:pae-system>
          </sys:system>
       </config>
@@ -268,7 +268,3 @@ def custom_rpc_intake():
     #This should take in user input for sepcific RPCs or at least ask them what to provide for the time being
     #Will try to set this up with the regular things first 
     pass
-
-
-
-        
