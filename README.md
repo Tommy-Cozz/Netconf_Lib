@@ -2,7 +2,7 @@
 
 
 **Current Status:** Only TLS connection is working if you come across this and need to update the certificates please find the cert_name cert key and trusted ca in
-the tls_engine_init.py folder they are at the top. Change these to match the current PKI infrastructure that you have. 
+the tls_engine_init.py folder they are at the top. Change these to match the current PKI infrastructure that you have. RPCS supported currently are 802.1x, User configuration with cert-to-name mapping via email name from extensions, Supervision, call home, 
 
 
 **Libs Used** socket, ssl, logging, and xml.etree.ElementTree, os, and time
