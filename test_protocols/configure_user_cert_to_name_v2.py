@@ -26,11 +26,8 @@ if target_key in RPC_SENDS:
     print(formatted_xml)
     
 
-
-ver_check = os.subprocesse()
 netconf.send_hello()
 netconf.send_rpc(RPC_SENDS["create_subscription"])
 netconf.send_rpc(formatted_xml)
 #Definign a way to have custom input in the RPCS
 time.sleep(int(user_interavel))
-    

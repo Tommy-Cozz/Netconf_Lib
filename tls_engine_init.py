@@ -10,6 +10,8 @@ tls then netconf tls and that would be good engouh to get the rpcs going
 
 import sys
 import os
+from rpc_registry import *
+
 
 #future plans needed to import the argparse lib 
 client_cert = "/home/kali/Desktop/PKI_CRL_INFRASTRUCTURE_IN_USE-EST-8_17_26/du_user_crl/oran_du_crl.crt"

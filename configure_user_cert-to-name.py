@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 from tls_engine_init import *
-
+from rpc_registry import *
 """
 Prupose of this script is to create a user configure them to match with certificate from certificate finger print (ROOT CA)
 and map that user to the respective group defined in the NACM

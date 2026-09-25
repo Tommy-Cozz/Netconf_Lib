@@ -6,4 +6,4 @@
 
 # Explicitly allow your target folders
 !netconf_tls_main/
-!/home/kali/Desktop/netconf_testing/netconf_tls_main/test_protocols/
+!test_protocols/
