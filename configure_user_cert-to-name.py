@@ -18,19 +18,19 @@ print(f"Connected to the RU at {RU_ip}:{RU_port} using {tls_sock.version()} with
 
 target_key = input("Enter the modified Yang Param you wish to edit: I.E(create_subscription OR watchdog)")
 if target_key in RPC_SENDS:
-    user_interavel = input("Enter the Supervision notification interval value: ")
+    user_interval = input("Enter the Supervision notification interval value: ")
     user_gaurd = input("Gaurd Timer value: ")
     raw_template = RPC_SENDS[target_key]
-    formatted_xml = raw_template.format(interval=user_interavel,gaurd=user_gaurd)
+    formatted_xml = raw_template.format(interval=user_interval,gaurd=user_gaurd)
     print("-----Generated XML PAYLOAD----\n")
     print(formatted_xml)
     
 
 
-ver_check = os.subprocesse()
+# ver_check = os.subprocesse() #FUTURE DONT WORRY ABOUT IT I had an idea for connecting directly to RU and then working on that 
 netconf.send_hello()
 netconf.send_rpc(RPC_SENDS["create_subscription"])
 netconf.send_rpc(formatted_xml)
 #Definign a way to have custom input in the RPCS
-time.sleep(int(user_interavel))
+time.sleep(int(user_interval))
     

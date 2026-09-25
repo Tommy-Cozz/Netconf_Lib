@@ -93,16 +93,16 @@ RPC_SENDS = {
     <config>
       <if:interfaces xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">
         <if:interface>
-          <if:name>eth_f_0</if:name>
+          <if:name>{interface_name}</if:name>
           <dot1x:pae xmlns:dot1x="urn:ieee:std:802.1X:yang:ieee802-dot1x">
-            <dot1x:pae-system>{pae_system}}</dot1x:pae-system>
+            <dot1x:pae-system>{pae_system}</dot1x:pae-system>
             <dot1x:port-type>real-port</dot1x:port-type>
             <dot1x:supplicant>
-              <dot1x:held-period>60</dot1x:held-period>
-              <dot1x:retry-max>3</dot1x:retry-max>
+              <dot1x:held-period>{held_period}</dot1x:held-period>
+              <dot1x:retry-max>{max_retry}</dot1x:retry-max>
             </dot1x:supplicant>
           </dot1x:pae>
-          <if:type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</if:type>
+          <if:type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">{iana_interface_type}</if:type>
         </if:interface>
       </if:interfaces>
     </config>
@@ -149,10 +149,23 @@ RPC_REGISTRY = {
     
     RPC_ID.IEEE_8021X:{
         "name":"IEEE 8021x Enable_Disable",
-        "rpc" : [
-          RPC_SENDS["ietf_interface_config"],
-          RPC_SENDS["ietf_system_config"]
-                ]
+        "rpc" : [{
+            "template" : RPC_SENDS["ietf_interface_config"],
+            "inputs" : ["interface_name",
+                        "pae_system",
+                        "held_period",
+                        "max_retry", 
+                        "iana_interface_type"
+                        ]
+            
+          
+          },
+          
+          {
+                 "template" :  RPC_SENDS["ietf_system_config"],
+                 "inputs" : ["dot1x_name","enabled"]
+          }
+          ]
         },
     
     RPC_ID.FTPES:{
@@ -161,15 +174,28 @@ RPC_REGISTRY = {
 }
 
 
+#                              "system_config" : ["dot1x_name","enabled"]}]
 
 to_send = []
 
 
 def configure_rpc(rpc_id):
   rpc_group = RPC_REGISTRY[rpc_id]["rpc"]
-  
   for rpc in rpc_group:
-    print(rpc)
+    rpc_template = rpc["template"]
+    rpc_inputs = rpc["inputs"] 
+    print(f"\n TEMPLATE: {rpc_template}")
+    
+    
+    print(f"PARAMETERS: ")
+    for paramter in rpc_inputs:
+      print(paramter)
+      
+    
+    
+  
+  
+  
     
 
 
